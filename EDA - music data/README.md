@@ -1,0 +1,3 @@
+# EDA - Music Data [2023]
+
+Various statistical analysis methods were applied to a Spotify database to examine which components of a song (genre, duration, key, tempo, etc.) most influence its popularity. An EDA (Exploratory Data Analysis) was conducted, utilizing various graphs to illustrate the tests. Additionally, probability distributions were tested for each component to determine which distribution was most suitable for modeling each category's distribution.
