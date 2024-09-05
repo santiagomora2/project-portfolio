@@ -1,0 +1,9 @@
+Data Availability Statement
+
+La base de datos utilizada en este proyecto fue Labeled Faces in the Wild (LFW).
+La información sobre la base de datos esta públicamente disponible en Labeled Faces in the Wild Home, en https://vis-www.cs.umass.edu/lfw/
+La exploración de la base de datos por orden alfabético está disponible en: https://vis-www.cs.umass.edu/lfw/alpha_last_A.html
+
+Gary B. Huang, Manu Ramesh, Tamara Berg, and Erik Learned-Miller.
+Labeled Faces in the Wild: A Database for Studying Face Recognition in Unconstrained Environments.
+University of Massachusetts, Amherst, Technical Report 07-49, October, 2007.
