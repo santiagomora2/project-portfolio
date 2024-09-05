@@ -1,0 +1,3 @@
+# TSP (Linear Programming) - Route Optimization for an Enterprise [2024]
+
+Data from an enterprise's (Comeverde) retail points of sale was used to optimize the number of promoters the enterprise needed, as well as the daily routes each promoter should follow to optimize transportation costs. A Travelling Salesman Problem (TSP) with constraints and a mathematical function to minimize costs was modeled in Python, using a sweeping method, to propose an optimization strategy for the enterprise’s promoters' time and transportation expenses.
