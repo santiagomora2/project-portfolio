@@ -1,0 +1,3 @@
+# Machine Learning (Supervised) for Voice Recognition [2024]
+
+Data was collected from the three team members on six different voice commands. This raw data was later processed by extracting the Mel-Frequency Cepstral Coefficients (MFCCs) from the audio data. After creating a dataframe with these coefficients, ten different supervised learning algorithms were compared. The most effective one in terms of recall (SVM with Linear Kernel) was used to create a voice command classifier to recognize the user's voice in real time.
