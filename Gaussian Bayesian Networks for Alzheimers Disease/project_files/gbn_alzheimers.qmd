@@ -1,0 +1,364 @@
+---
+title: "Marcadores del Alzheimer, su relación usando Redes Bayesianas"
+author: "Santiago Mora, Gabriel Reynoso, Guillermo Villegas"
+format: pdf
+editor: visual
+bibliography: 'references.bib'
+---
+
+## Abstract
+
+En el siguiente trabajo se realiza un análisis de datos para una base de datos con diferentes métricas relacionadas al diagnóstico de la enfermedad de Alzheimer (AD) proveniente del Alzheimer´s Disease Neuroimaging Initiative (ADNI). El estudio utiliza Directed Acyclic Graphs (DAGs) para establecer relaciones entre variables. Mismas que fueron seleccionadas y relacionadas en conjunto con tres especialistas de la salud. De acuerdo a nuestro modelos realizados encontramos una considerable probabilidad de presentar menores tamaños del cerebro o del hipocampo en presencia de niveles altos de las neurotoxinas consideradas (beta-amiolida, Tau y Tau fosforilada), así como una alta relación de encontrar niveles altos de estas neurotoxinas ante la no duplicidad del gen APOE4
+
+## Introducción
+
+En 2020 se estimaba, que en el mundo más de 50 millones de personas vivían con demencia, aunque no es el único padecimiento el Alzheimer representa entre 60 y 70% de los casos [@Gomez_Virgilio]. La enfermedad de Alzheimer (EA) es una condición neurodegenerativa que afecta funciones cognitivas como lo son la memoria, el juicio, lenguaje entre otras [@Kumar2024]. Al ocurrir en un espectro de gravedad, un diagnóstico temprano es crucial para realizar cambios en el estilo de vida del paciente para mejor sus condiciones. El problema radica en que no existe una solo prueba diagnóstica estandarizada [@Gomez_Virgilio]. Existen pruebas de imagen como la positron emission tomography (PET) , de biomarcadores como lo son el péptido beta-amiloide o las hormonas tau, o pruebas cognitivas como la Clinical Dementia Rating Scale (CDRS) [@Rukmangadachar2023]. En el siguiente artículo se busca explorar las relaciones entre estos marcadores con el uso de redes bayesianas. EL Alzheimer’s Disease Neuroimaging Initative (ADNI) es un estudio que busca apoyar la investigación, del desarrollo, la prevención y el tratamiento de la EA, se utilizó la información de su base de datos.
+
+## Métodos
+
+Comenzamos el estudio con el entendimiento de la enfermedad, la base de datos y las métricas involucradas. Esto fue posible gracias a los especialistas de la salud con los que consultamos sobre conocimientos de medicina para la realización de los modelos: Diana Villegas Morales, Alexis Álvarez Cano, Dr. Victor Cárdenas García. Los tres coincidireon en que al tratar con el diagnóstico de Alzheimer, lo más importante es la imagenología y algunas pruebas conductuales que teníamos como variables en la base de datos. Los tres recalcaron la importancia de la duplicidad en el gen APEO4, que básicamente te hace más propenso a desarrollar Alzheimer. Esto se alinea con nuestras fuentes bilbiográficas consultadas. A como fue explicado por los médicos no se sabe a ciencia cierta si la duplicidad en este gen propicie la codificación de las neurotoxinas que utlizamos para el estudio: Beta-Amiolida, Tau, y Tau fosforilada. Estas neurotoxinas son responsables de dañar las neuronas en el cerebro, que se expresa como un decremento en su tamaño y en el hipocampo. Aquí es donde los médicos divergen en qué neurotoxinas afectan qué partes del cerebro. Después de que se perjudique el cerebro, es cuando podemos observar un mayor nivel para el Clinical Dimentia Rating, métrica usada para medir qué tanta demencia es perecibida en el paciente por el médico. Después de haber tenido estas discusiones, elboramos las Directed Acyclic Graph (DAGs) haciendo incapié en las relaciones de dependencia entre variables y platicamos con los médicos sobre qué probabilidades les gustaría conocer en base a las variables seleccionadas. Después de esto, limpiamos la base de datos, buscamos conocer las disitrbuciones de las variables mediante métricas de cuartiles, tendecia central y gráficas. Después de conocer nuestros datos, creamos las DAGs propuestas por los médicos y ajustamos una red Gaussiana lineal para poder hacer los cálculos de probabilidad.
+
+## Aplicación
+
+### Variables
+
+APEO4: Cantidad de copias del gen AP0E4. Casi todos los pacientes con dos copias de APOE4 presentan Alzheimer o características físicas de este como en los biomarcadores del líquido cefalorraquídeo y PET [@Fortea2024].
+
+ABETA: EL péptido beta amiloide que se deposita en las peredes extracelulares del cerebro, es un indicador de EA [@Rukmangadachar2023]
+
+TAU: Próteína Tau, un biomarcador de EA, se encuentre en el liquido cerebroespinal [@Mecocci1988]
+
+PTAU: Tau Fosforilada, marcador de la enfermedad encontrado en sangre [@Ashton2023]
+
+CDRSB: Clinical Cementia Cating. De una escala del 0 al 3, mide el grado de dementia percibido por la conducta del paciente. Siendo 0 no demencia y tres demencia grave. Este test se basa en darle al paciente preguntas de razonamiento [@KHAN201627].
+
+Hippocampus: Mediciones de hipocampo del paciente.
+
+WholeBrain: Mediciones del cerebro del paciente.
+
+### Base de Datos
+
+```{r}
+#| echo: False 
+#| results: "hide"
+#| warning: False
+#| error: false
+library(tidyverse)
+library(bnlearn)
+library(fastDummies)
+```
+
+```{r}
+#| echo: False 
+#| results: "hide"
+#| warning: False
+#| error: false
+data = read_csv("ADNI.csv")
+```
+
+```{r}
+#| echo: False 
+#| warning: False
+#| error: false
+data = data |>
+  select(APOE4, ABETA, TAU, PTAU, CDRSB, Hippocampus, WholeBrain)
+head(data)
+```
+
+```{r}
+#| echo: False 
+#| results: "hide"
+#| warning: False
+#| error: false
+data = data |>
+  select(APOE4, ABETA, TAU, PTAU, CDRSB, Hippocampus, WholeBrain)
+```
+
+```{r}
+#| echo: False 
+#| results: "hide"
+#| warning: False
+#| error: false
+data = data |>
+  mutate(across(where(is.character), as.numeric))
+```
+
+```{r}
+#| echo: False 
+#| results: "hide"
+#| warning: False
+#| error: false
+data = data |>
+  drop_na()
+
+```
+
+## Gráficas
+
+```{r}
+#| echo: False 
+#| results: "hide"
+#| warning: False
+#| error: false
+library(readr)
+library(ggplot2)
+```
+
+### APOE4
+
+```{r}
+#| echo: False
+summary(data$APOE4)
+```
+
+```{r}
+#| echo: False
+value_counts <- as.data.frame(table(data$APOE4))
+colnames(value_counts) <- c("APOE4", "Count")
+
+# Create the bar plot
+ggplot(value_counts, aes(x = APOE4, y = Count)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  theme_minimal() +
+  labs(title = "Bar Plot of APOE4 Values",
+       x = "Number of APOE4 genes",
+       y = "Count") 
+```
+
+### A-Beta
+
+```{r}
+#| echo: False
+summary(data$ABETA)
+```
+
+```{r}
+#| echo: False
+ggplot(data, aes(x = ABETA)) +
+  geom_histogram(binwidth = 20, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Histogram of ABETA",
+       x = "ABETA Value",
+       y = "Frequency")
+```
+
+### Tau
+
+```{r}
+#| echo: False
+summary(data$TAU)
+```
+
+```{r}
+#| echo: False
+ggplot(data, aes(x = TAU)) +
+  geom_histogram(binwidth = 20, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Histogram of TAU",
+       x = "TAU Value",
+       y = "Frequency")
+```
+
+### P-Tau
+
+```{r}
+#| echo: False
+summary(data$PTAU)
+```
+
+```{r}
+#| echo: False
+ggplot(data, aes(x = PTAU)) +
+  geom_histogram(binwidth = 3, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Histogram of PTAU",
+       x = "PTAU Value",
+       y = "Frequency")
+```
+
+### Whole Brain
+
+```{r}
+#| echo: False
+summary(data$WholeBrain)
+```
+
+```{r}
+#| echo: False
+ggplot(data, aes(x = WholeBrain)) +
+  geom_histogram(binwidth = 15000, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Histogram of WholeBrain",
+       x = "WholeBrain Value",
+       y = "Frequency")
+```
+
+### Hippocampus
+
+```{r}
+#| echo: False
+summary(data$Hippocampus)
+```
+
+```{r}
+#| echo: False
+ggplot(data, aes(x = Hippocampus)) +
+  geom_histogram(binwidth = 200, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Histogram of Hippocampus",
+       x = "Hippocampus Value",
+       y = "Frequency")
+```
+
+### CDRSB
+
+```{r}
+#| echo: False
+summary(data$CDRSB)
+```
+
+```{r}
+#| echo: False
+ggplot(data, aes(x = CDRSB)) +
+  geom_histogram(binwidth = 0.5, fill = "skyblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Histogram of CDSRB",
+       x = "CDRSB Value",
+       y = "Frequency")
+```
+
+## DAGs
+
+### DAG propuesta por Diana Villegas Morales, egresada de Medicina General
+
+```{r}
+#| echo: False
+dagd = model2network("[APOE4][PTAU|APOE4][ABETA|APOE4][TAU|APOE4][WholeBrain|PTAU:ABETA][Hippocampus|TAU][CDRSB|Hippocampus:WholeBrain]")
+```
+
+```{r}
+#| echo: False
+graphviz.plot(dagd, shape = "ellipse")
+```
+
+Score BIC para la DAG en cuestión.
+
+```{r}
+#| echo: False
+score(dagd, data=data, type='bic-g')
+```
+
+Score AIC para la DAG en cuestión.
+
+```{r}
+#| echo: False
+score(dagd, data=data, type='aic-g')
+```
+
+### DAG propuesta por Alexis Álvarez Cano, estudiante de medicina
+
+```{r}
+#| echo: False
+daga = model2network("[APOE4][ABETA|APOE4][TAU|APOE4][PTAU|TAU][WholeBrain|ABETA:TAU:PTAU][Hippocampus|ABETA:PTAU:TAU][CDRSB|Hippocampus:WholeBrain]")
+```
+
+```{r}
+#| echo: False
+graphviz.plot(daga, shape = "ellipse")
+```
+
+Score BIC para la DAG en cuestión.
+
+```{r}
+#| echo: False
+score(daga, data=data, type='bic-g')
+```
+
+Score AIC para la DAG en cuestión.
+
+```{r}
+#| echo: False
+score(daga, data=data, type='aic-g')
+```
+
+### DAG propuesta por el Dr. Victor Cárdenas García, especialista en tratamiento gerártrico
+
+```{r}
+#| echo: False
+dagv = model2network("[APOE4][ABETA|APOE4][TAU|APOE4][PTAU|TAU][WholeBrain|PTAU][Hippocampus|ABETA:TAU][CDRSB|WholeBrain:Hippocampus]")
+```
+
+```{r}
+#| echo: False
+graphviz.plot(dagv, shape = "ellipse")
+```
+
+Score BIC para la DAG en cuestión.
+
+```{r}
+#| echo: False
+score(dagv, data=data, type='bic-g')
+```
+
+Score AIC para la DAG en cuestión.
+
+```{r}
+#| echo: False
+score(dagv, data=data, type='aic-g')
+```
+
+## Inclusión de Variables categóricas en las DAGs
+
+Si se quisieran agregar variables categóricas de interés a la Red Bayesiana Gaussiana, debería realizarse alguna de las siguientes alternativas:
+
+La primera es discretizar las variables categóricas, es decir transformar la variable categórica en una numérica discreta. Esto se puede lograr mediante el uso de algún Encoding conocido, como lo es el One-Hot Encoding, que asigna 1 si se cumple que la variable sea cierta categoría o 0 en caso contrario. El problema con esto es que si hay $C$ categorías, se tendrían que tener $C-1$ variables diferentes para representarlas a todas, lo cual es práctico para variables como Sexo, pero puede no serlo para otras.
+
+La otra alternativa es cambiar completamente modelo y, en vez de usar una Red Bayesiana Gaussiana, utilizar una Red Bayesiana Condicional (Híbrida). En este tipo de red, las variables numéricas continuas son modeladas como Gaussianas dadas las variables categóricas, mediante el condicionamiento de las distribuciones Gaussianas a cada una de las categorías. Es un modelo más sofisticado, el cual sería interesante utilizar a futuro para comparar resultados.
+
+Una posible DAG que integre la variable categórica Sexo podría ser la siguiente:
+
+```{r}
+#| echo: False
+dagS = model2network("[PTGENDER_male][APOE4|PTGENDER_male][ABETA|APOE4][TAU|APOE4][PTAU|TAU][WholeBrain|ABETA:TAU:PTAU][Hippocampus|ABETA:PTAU:TAU][CDRSB|Hippocampus:WholeBrain]")
+```
+
+```{r}
+#| echo: False
+graphviz.plot(dagS, shape = "ellipse")
+```
+
+## Querying ajustando un modelo lineal
+
+```{r}
+#| echo: False
+dag_fit = bn.fit(daga, data=data)
+```
+
+Probabilidad de tener un \textit{clinical dementia rating} mayor a 2 cuando existe duplicidad en el gen APOE4 $\mathbb{P}(\text{CDRSB}>2\mid\text{APOE4}=2)$
+
+```{r}
+#| echo: False
+cpquery(dag_fit, event = CDRSB > 2, evidence = list(APOE4 = 2), method = "lw")
+```
+
+Probabilidad de presentar tamaños pequeños de cerebro o de hipocampo en presencia de altos niveles de neurotoxinas $\mathbb{P}(\text{Hippocampus} <5,889 \cup \text{WholeBrain }<947027 | Tau>34.48 \cup aBeta >1076 \cup pTau > 34.48 )$
+
+```{r}
+#| echo: False
+cpquery(dag_fit, event = (Hippocampus < 5889 | WholeBrain < 947027), evidence = (TAU>34.48 | ABETA > 1076 | PTAU > 34.48))
+```
+
+Probabilidad de que se presenten niveles altos de neurotoxinas dado que no se presenta duplicidad en el gen APOE4
+
+$\mathbb{P}(Tau>34.48 \cup aBeta >1076 \cup pTau > 34.48  | APOE4 \neq 2)$
+
+```{r}
+#| echo: False
+cpquery(dag_fit, event = (TAU > 34.48 | ABETA > 1076 | PTAU > 34.48), evidence = APOE4 != 2)
+```
+
+## Conclusiones
+
+De las tres relaciones planteadas por los expertos la de Alexis Alvarez fun la mejor en base a los puntajes de BIC y AIC. En esta DAG se supone que todas las neurotoxinas observadas en el estudio repercuten en el tamaño del cerebro y del hipocampo, a diferencia de los otros modelos.Además este modelo permitió responder algunas preguntas que podrían contribuir a la estandarización de pruebas de diagnóstico. Por último la exploración de incorporar variables categóricas a las Redes Bayesianas Gaussianas, permite la expansión de posibles redes permitiendo modelos más complejos.
+
+# Referencias
