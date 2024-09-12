@@ -14,6 +14,8 @@ Engineering in Data Science and Mathematics
 
 - Experienced in R, Python, Pandas, Matplotlib, Seaborn, SciKit-Learn, Numpy, SciPy.
 
+- Currently learning Pytorch
+
 ## What drives me
 
 I am driven by a desire to apply my expertise in Machine Learning, Artificial Intelligence, and data science to projects that not only push the boundaries of innovation but also contribute to a more sustainable and healthier future for all.
