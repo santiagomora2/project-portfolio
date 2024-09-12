@@ -4,7 +4,7 @@
 
 5th semester student
 
-Engineering in Data Science and Mathematics 
+B.S. in Data Science and Mathematics Engineering
 
 @ Tecnológico de Monterrey, Campus Guadalajara.
 
