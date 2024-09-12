@@ -87,7 +87,7 @@ Listed from the most recent to the oldest:
 
 - Conducted an EDA on Spotify data to identify key components influencing song popularity and their suitable probability distributions.
 
-# Contact Information
+# Get in touch
 
 academic e-mail: a01369517@tec.mx
 
