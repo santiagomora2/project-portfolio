@@ -4,4 +4,4 @@ This research focused on analyzing data from the Alzheimer’s Disease Neuroimag
 
 The objective was to examine how genetic factors (APOE4 gene) and neurotoxins (beta-amyloid, tau, and phosphorylated tau) relate to cognitive decline and brain atrophy. The findings helped model the progression of the disease and provided insights into potential diagnostic markers.
 
-The data used for this project should not be released along with this project, per the *ADNI use of agreement*.
+The data used for this project should not be released along with this project, per the *ADNI data use agreement*.
