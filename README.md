@@ -39,6 +39,18 @@ Special thanks to the teachers and classmates who have helped me along the way.
 
 Listed from the most recent to the oldest:
 
+### Markov Chain Business Analysis and Recommendation Algorithm [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Markov%20Chain%20Business%20Analysis%20and%20Recommendation%20Algorithm) [2024]
+
+- Product sales were analyzed to extract reactivation and deactivation probabilities and other metrics using Markov chains, along with a recommendation system using cosine similarity. Business insights were given based on this analysis. 
+
+### Gaussian Bayesian Networks for Alzheimers Disease [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Gaussian%20Bayesian%20Networks%20for%20Alzheimers%20Disease) [2024]
+
+- DAGs and Gaussian Bayesian Networks were used to study the relationship between Alzheimer’s disease biomarkers and brain atrophy/cognitive decline, offering insights into disease progression and potential diagnostic tools.
+
+### Bayesian Networks for Education in Mexico [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Bayesian%20Networks%20for%20Education%20in%20Mexico) [2024]
+
+- Research on educational outcomes in Mexico through Bayesian networks, analyzing factors like gender, age, and school type. The findings highlight key dependencies influencing education and provide suggestions for policy improvements.
+
 ### Machine Learning (Unsupervised) for Fetal Potential Heart Disease Clustering [(folder)](https://github.com/santiagomora0/project-portfolio/tree/main/Machine%20Learning%20(unsupervised)%20for%20fetuses'%20potential%20heart%20disease%20clustering) [2024]
 
 - Applied unsupervised learning to cluster fetal heart data, revealing potential early indicators of hypoxia.
