@@ -1,3 +1,36 @@
+# About me
+
+## Academic information
+
+5th semester student
+
+B.S. in Data Science and Mathematics Engineering
+
+@ Tecnológico de Monterrey, Campus Guadalajara.
+
+## Areas of expertise
+
+- Data Science, Machine Learning, Artificial Intelligence, Statistical Analysis.
+
+- Experienced in R, Python, Pandas, Matplotlib, Seaborn, SciKit-Learn, Numpy, SciPy.
+
+- Currently learning Pytorch
+
+## What drives me
+
+I am driven by a desire to apply my expertise in Machine Learning, Artificial Intelligence, and data science to projects that not only push the boundaries of innovation but also contribute to a more sustainable and healthier future for all.
+
+## Experience and Competitions
+
+- First place winner of the entrepreneurship prize in Guadalahacks’ Hackathon with the project: “Parkinsons detection through voice using AI” [(Devpost)](https://devpost.com/software/deteccion-de-parkinson-a-traves-de-la-voz-con-ia). Guadalajara, México.[2024]
+- Data Science and AI specialist at Jatenx. [2024]
+- Participant in the International Collegiate Programming Contest. Guadalajara, México [2024].
+- Participant in Intel’s Acelerando México con Inteligencia Artificial competition. Guadalajara, México [2024].
+
+## Personal Interests
+
+I am a drum and bass player, former football player, bonsai enthusiast, and I really enjoy conservationism and camping.
+
 # Project Portfolio
 
 A collection of the most relevant projects completed throughout my bachelor's degree.
@@ -7,6 +40,14 @@ As a Mexican student, all of these projects are written in Spanish, but any of t
 Special thanks to the teachers and classmates who have helped me along the way.
 
 Listed from the most recent to the oldest:
+
+### Stock Portfolio Optimization using Multi-Objective Genetic Algorithm [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Stock%20Portfolio%20Optimization%20using%20Multi-Objective%20Genetic%20Algorthm) [2024]
+
+- Developed a multi-objective genetic algorithm to optimize stock portfolios by balancing return and risk. The model provided efficient frontiers, enabling investors to make data-driven decisions based on their risk tolerance and desired returns.
+
+### Linear Regression and Linear Programming for Pill Production Optimization [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Linear%20Regression%20and%20Linear%20Programming%20for%20Pill%20Production%20Optimization) [2024]
+
+- Applied linear regression to predict hardness and friabilty of a pill  and used linear programming to optimize the manufacturing process of pills, minimizing friability and maximizing hardness within an arbitrary range for the process' parameters.
 
 ### Markov Chain Business Analysis and Recommendation Algorithm [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Markov%20Chain%20Business%20Analysis%20and%20Recommendation%20Algorithm) [2024]
 
