@@ -14,7 +14,7 @@ B.S. in Data Science and Mathematics Engineering
 
 - Experienced in R, Python, Pandas, Matplotlib, Seaborn, SciKit-Learn, Numpy, SciPy.
 
-- Currently learning Pytorch
+- Currently learning Pytorch and Tensorflow
 
 ## What drives me
 
