@@ -5,4 +5,4 @@ This project focuses on optimizing stock portfolios using a multi-objective gene
 Each portfolio is evaluated based on real historical stock data, calculating expected returns and risks using variance or standard deviation.
 The algorithm not only returns an efficient solution, but an efficient frontier, offering investors a set of optimal portfolios that trade off risk and return effectively. The project also includes visual representations of portfolio performance and the efficient frontier, making it easier for investors to analyze their options and make informed decisions.
 
-The interface for this project can be found in [this link](https://ga-portfolio-optimization.streamlit.app)
+The interface for this project can be found in [this link](https://evoinvest.streamlit.app)
