@@ -12,7 +12,7 @@ B.S. in Data Science and Mathematics Engineering
 
 - Data Science, Machine Learning, Artificial Intelligence, Statistical Analysis.
 
-- Experienced in R, Python, Pandas, Matplotlib, Seaborn, SciKit-Learn, Numpy, SciPy, Keras.
+- Experienced in R, Python, Pandas, Matplotlib, Tensorflow, Keras, SciKit-Learn, Seaborn, Numpy, SciPy.
 
 - Currently learning Pytorch
 
