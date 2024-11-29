@@ -14,7 +14,7 @@ B.S. in Data Science and Mathematics Engineering
 
 - Experienced in R, Python, Pandas, Matplotlib, Seaborn, SciKit-Learn, Numpy, SciPy.
 
-- Currently learning Pytorch and Tensorflow
+- Currently learning Pytorch
 
 ## What drives me
 
@@ -23,7 +23,6 @@ I am driven by a desire to apply my expertise in Machine Learning, Artificial In
 ## Experience and Competitions
 
 - First place winner of the entrepreneurship prize in Guadalahacks’ Hackathon with the project: “Parkinsons detection through voice using AI” [(Devpost)](https://devpost.com/software/deteccion-de-parkinson-a-traves-de-la-voz-con-ia). Guadalajara, México.[2024]
-- Participant in HackMTY's 2024 Hackathon with the project: "Computer Vision and Generative AI for Retail Stores" [(Devpost)](https://devpost.com/software/full-eye). Monterrey, México. [2024]
 - Data Science and AI specialist at Jatenx. [2024]
 - Participant in the International Collegiate Programming Contest. Guadalajara, México [2024].
 - Participant in Intel’s Acelerando México con Inteligencia Artificial competition. Guadalajara, México [2024].
@@ -41,6 +40,10 @@ As a Mexican student, all of these projects are written in Spanish, but any of t
 Special thanks to the teachers and classmates who have helped me along the way.
 
 Listed from the most recent to the oldest:
+
+### Deep learning model comparison for detecting smiles [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Deep%20Learning%20model%20comparison%20for%20detecting%20smiles) [2024]
+
+- Designed a project to classify smiles in images by building a CNN and an autoencoder for anomaly detection. Results highlighted the CNN as the superior approach, achieving higher accuracy and average recall across classes.
 
 ### Stock Portfolio Optimization using Multi-Objective Genetic Algorithm [(folder)](https://github.com/santiagomora2/project-portfolio/tree/main/Stock%20Portfolio%20Optimization%20using%20Multi-Objective%20Genetic%20Algorthm) [2024]
 
